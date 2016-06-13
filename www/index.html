@@ -1,0 +1,170 @@
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/font-awesome.min.css" rel="stylesheet" />
+	<link href="css/common.css" rel="stylesheet" />
+
+	<script src="js/jquery-1.12.3.min.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.canvasjs.min.js"></script>
+  <script src="js/config.js"></script>
+
+</head>
+<body>
+	<div class="row text-center">
+		<div class="col-md-4"></div>
+		<div class="col-md-4 col-xs-12"><h1>Doc's Records</h1></div>
+		<div class="col-md-4"></div>
+	</div>
+	<div class="home-menu">
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-xs-4 text-center"><a class="panel-btn" data-module="page-patients"><h1><i class="fa fa-users"></i></h1><small>Patient Records</small></a></div>
+			<div class="col-lg-4 col-md-4 col-xs-4 text-center"><a class="panel-btn" data-module="page-report"><h1><i class="fa fa-area-chart"></i></h1><small>Reports</small></a></div>
+			<div class="col-lg-4 col-md-4 col-xs-4 text-center"></div>
+		</div>
+	</div>
+	<div class="module-layout page-patients" style="display:none;">
+		<div class="row">
+			<div class="col-md-12 col-xs-12 col-lg-12 text-right">
+				<a class="btn btn-back btn-default pull-left"><i class="fa fa-backward" aria-hidden="true"></i> Back</a><br>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-xs-12 col-lg-12">
+				<ul id="myTabs" class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Add Patient</a></li>
+					<li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">Patients</a></li>
+				</ul>
+				<div id="myTabContent" class="tab-content">
+					<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+						<form class="add-patient">
+              <div class="add-message">
+              </div>
+              <small>Fields with (<font color="red">*</font>) are required.</small>
+						  <div class="form-group">
+						    <label for="patientFirstname"><font color="red">*</font>Firstname</label>
+						    <input type="text" class="form-control" name="firstname" id="patientFirstname" placeholder="Firstname">
+                <small class="error-field error-firstname"></small>
+						  </div>
+							<div class="form-group">
+						    <label for="patientLastname"><font color="red">*</font>Lastname</label>
+						    <input type="text" class="form-control" name="lastname" id="patientLastname" placeholder="Lastname">
+                <small class="error-field error-lastname"></small>
+						  </div>
+						  <div class="form-group">
+						    <label for="patientBirthdate"><font color="red">*</font>Birthdate</label>
+						    <input type="date" name="birthdate" class="form-control" id="patientBirthdate" placeholder="Birthdate">
+                <small class="error-field error-birthdate"></small>
+						  </div>
+              <div class="form-group">
+						    <label for="patientBirthdate"><font color="red">*</font>Gender</label><br>
+						    <input type="radio" name="gender" value="Female"/>Female
+                <input type="radio" name="gender" value="Male"/>Male
+                <br>
+                <small class="error-field error-gender"></small>
+						  </div>
+						  <div class="form-group">
+						    <label for="patientBloodType"><font color="red">*</font>Blood Type</label>
+						    <select class="form-control" id="patientBloodType" name="bloodtype" placeholder="Bloodtype">
+									<option value=""></option>
+									<option value="A">A</option>
+									<option value="AB">AB</option>
+									<option value="B">B</option>
+									<option value="O">O</option>
+								</select>
+                <small class="error-field error-bloodtype"></small>
+						  </div>
+              <div class="form-group">
+						    <label for="patientCity"><font color="red">*</font>City</label>
+						    <input type="text" class="form-control" name="city" id="patientCity" placeholder="City">
+                <small class="error-field error-city"></small>
+						  </div>
+						  <button type="submit" class="btn btn-success btn-block">Submit</button>
+						</form>
+					</div>
+					<div role="tabpanel" class="tab-pane fade table-responsive" id="profile" aria-labelledby="profile-tab">
+						<table class="table table-stripped">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Firstname</th>
+									<th>Lastname</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody class="patients-records">
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+  <div class="module-layout page-patient" style="display:none;">
+		<div class="row">
+			<div class="col-md-12 col-xs-12 col-lg-12 text-right">
+				<a class="btn btn-back btn-default pull-left"><i class="fa fa-backward" aria-hidden="true"></i> Back</a><br>
+			</div>
+		</div>
+    <div class="row">
+      <div class="col-md-12 col-xs-12 col-lg-12 text-right">
+        <h2>Patient Record</h2>
+        <table class="table table-bordered">
+            <tr>
+              <th>Firstname</th>
+              <td class="vp-firstname"></td>
+            </tr>
+            <tr>
+              <th>Lastname</th>
+              <td class="vp-lastname"></td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td class="vp-gender"></td>
+            </tr>
+            <tr>
+              <th>Birthdate</th>
+              <td class="vp-birthdate"></td>
+            </tr>
+            <tr>
+              <th>Blood Type</th>
+              <td class="vp-bloodtype"></td>
+            </tr>
+            <tr>
+              <th>City</th>
+              <td class="vp-city"></td>
+            </tr>
+            <tr>
+              <th>Date Added</th>
+              <td class="vp-created_at"></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="module-layout page-report" style="display:none;">
+		<div class="row">
+			<div class="col-md-12 col-xs-12 col-lg-12 text-right">
+				<a class="btn btn-back btn-default pull-left"><i class="fa fa-backward" aria-hidden="true"></i> Back</a><br>
+			</div>
+		</div>
+    <div class="row">
+			<div class="col-md-12 col-xs-12 col-lg-12">
+				<div id="chartBloodType" style="height: 320px; width: 90%;"></div></br>
+				<div id="chartCity" style="height: 320px; width: 90%;"></div>
+			</div>
+		</div>
+  </div>
+	<script src="js/app.js"></script>
+	<!--<script type="text/javascript" src="cordova.js"></script>-->
+</body>
+</html>
